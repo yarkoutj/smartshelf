@@ -10,25 +10,24 @@
         </div>
 
         <div class="row">
-            <h2>Lista de videos</h2>
+            <h2>Lista de estantes</h2>
 
             <hr>
             <br>
             <p align="right">
                 {{--<a href="{{ route('areas.create') }}" class="btn btn-success">Capturar Área</a>--}}
                 <a href="{{ route('home') }}" class="btn btn-primary">< Regresar</a>
+                <a href="{{ route('shelfs.create') }}" class="btn btn-success">Crear nuevo</a>
             </p>
+        </div>
+        <div class="row">
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
                     <th>Acciones</th>
-                    <th>Miniatura</th>
-                    <th>Id Video</th>
-                    <th>Título</th>
-                    <th>Descripción</th>
-                    <th>Enlace Video</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
+                    <th>Id</th>
+                    <th>Ubicación</th>
+                    <th>Codigo</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,7 +52,7 @@
 <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
 <script type="text/javascript">
-    var data = @json($videos);
+    var data = @json($shelfs);
 
     $(document).ready(function() {
         $('#example').DataTable({

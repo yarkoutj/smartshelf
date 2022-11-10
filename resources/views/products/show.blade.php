@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h3>Editar producto: {{$product->name}}</h3>
+                <h3>Visualización de producto: {{$product->name}}</h3>
             </div>
         </div>
         <div class="row">
@@ -24,10 +24,14 @@
                     <input type="number" class="form-control" id="shelf_id" name="shelf_id" min="1" max="10" value="{{$product->shelf_id}}" disabled/>
                     <label for="name">Nombre</label>
                     <input type="text" class="form-control" id="title" name="name" value="{{$product->name}}" disabled/>
-                    <label for="weight">Peso unitario prom.</label>
+                    <label for="weight">Peso</label>
                     <input type="text" class="form-control" id="weight" name="weight" value="{{$product->weight}}" disabled/>
-                    <label for="state">Estatus</label>
-                    <input type="text" class="form-control" id="state" name="state" value="{{$product->state}}" disabled/>
+                    <label for="state">Estado</label>
+                    <select class="form-control" id="state" name="state" value="{{$product->state}}" disabled>
+                        <option value="">{{$product->state}}</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
                     <label for="stockmin">Inventario mínimo</label>
                     <input type="text" class="form-control" id="stockmin" name="stockmin" value="{{$product->stockmin}}" disabled/>
                     <label for="stockmax">Inventario máximo</label>

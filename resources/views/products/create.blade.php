@@ -24,7 +24,7 @@
               </div>
               <div class="form-group">
                    <label for="name">Nombre</label>
-                   <input type="text" class="form-control" id="title" name="name" value="{{old('name')}}"/>
+                   <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}"/>
               </div>
               <div class="form-group">
                    <input type="hidden" id="weight" name="weight" value="0"/>

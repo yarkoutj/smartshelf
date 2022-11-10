@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         //Carga la página de inicio del objeto
-        $products = Product :: where ('state', '=', 'A') -> get() ;
+        $products = Product :: where ('state', '!=', 'Eliminado') -> get() ;
         $cont = Product::count();
         $productsT = $this->cargarDT($products);
         return view(view:'products.index')-> with('products', $productsT)->with('cont', $cont);
@@ -93,7 +93,12 @@ class ProductController extends Controller
     public function create()
     {
         // mostrar el formulario de captura
-        return view('products.create');
+        $user = Auth::user();
+        if ($user) {
+            return view('products.create');
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -197,8 +202,9 @@ class ProductController extends Controller
 
     public function delete_product($product_id)
     {
+        $user = Auth::user();
         $product = Product::find($product_id);
-        if ($product) {
+        if ($product && $user) {
             $product->state = 0;
             $product->update();
             return redirect()->route('products.index')->with(array(
@@ -206,7 +212,7 @@ class ProductController extends Controller
             ));
         } else {
             return redirect()->route('products.index')->with(array(
-                "message" => "El producto que trata de eliminar no existe"
+                "message" => "El producto que trata de eliminar no existe o no tiene permiso"
             ));
         }
     }

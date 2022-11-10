@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 /*
@@ -44,11 +44,17 @@ Route::middleware([
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource(name:'products', controller:'\App\Http\Controllers\ProductController');
+Route::resource(name:'shelfs', controller:'\App\Http\Controllers\ShelfController');
 //Route::resource(name:'comments', controller:'\App\Http\Controllers\CommentController');
 
 Route::get('/delete-product/{product_id}', array(
     'as' => 'delete-product',
     'middleware' => 'auth',
     'uses' => 'App\Http\Controllers\ProductController@delete_product'
+));
+Route::get('/delete-shelf/{shelf_id}', array(
+    'as' => 'delete-shelf',
+    'middleware' => 'auth',
+    'uses' => 'App\Http\Controllers\ShelfController@delete_shelf'
 ));
 
