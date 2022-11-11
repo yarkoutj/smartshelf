@@ -17,10 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('product_id');
             $table->integer('shelf_id');
-            $table->float('lectureweight');
-            $table->float('netweight');
-            $table->integer('variationquantity');
-            $table->string('movtype',8);
+            $table->string('state',8);
             $table->timestamps();
             $table->softDeletes();
         });

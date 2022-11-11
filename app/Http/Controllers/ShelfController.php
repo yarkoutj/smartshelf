@@ -17,7 +17,7 @@ class ShelfController extends Controller
     public function index()
     {
         //Carga la página de inicio del objeto
-        $shelfs = Shelf :: where ('code', '!=', 'Eliminado') -> get() ;
+        $shelfs = Shelf :: where ('state', '!=', 'Eliminado') -> get() ;
         $cont = Shelf::count();
         $shelfsT = $this->cargarDT($shelfs);
         return view(view:'shelfs.index')-> with('shelfs', $shelfsT)->with('cont', $cont);
@@ -76,8 +76,10 @@ class ShelfController extends Controller
             $shelfs[$key] = array(
                 $acciones,
                 $value['id'],
-                $value['ubication'],
-                $value['code']
+                $value['shelf'],
+                $value['level'],
+                $value['state'],
+                $value['shelf_id']
             );
 
         }
@@ -112,12 +114,16 @@ class ShelfController extends Controller
         //guarda un nuevo registro apartir de un formulario de nuevo registro
         //validacion del formulario
         $validateData = $this->validate($request, [
-            'ubication' => 'required|min:2',
-            'code' => 'required|min:1'
+            'shelf' => 'required|min:1',
+            'level' => 'required|min:1',
+            'state' => 'required|min:6',
+            'shelf_id' => 'required|min:2'
         ]);
         $shelf = new Shelf();
-        $shelf->ubication = $request->input(key:'ubication');
-        $shelf->code = $request->input(key:'code');
+        $shelf->shelf = $request->input(key:'shelf');
+        $shelf->level = $request->input(key:'level');
+        $shelf->state = $request->input(key:'state');
+        $shelf->shelf_id = $request->input(key:'shelf_id');
         $shelf->save();
         return redirect()->route(route: 'shelfs.index')->with(array(
             'message' => 'El estante se ha creado correctamente'
@@ -166,12 +172,16 @@ class ShelfController extends Controller
     {
         //guarda la modificacion de una edicion
         $validateData = $this->validate($request, [
-            'ubication' => 'required|min:2',
-            'code' => 'required|min:1'
+            'shelf' => 'required|min:1',
+            'level' => 'required|min:1',
+            'state' => 'required|min:6',
+            'shelf_id' => 'required|min:2'
         ]);
         $shelf = Shelf::find($id);
-        $shelf->ubication = $request->input(key:'ubication');
-        $shelf->code = $request->input(key:'code');
+        $shelf->shelf = $request->input(key:'shelf');
+        $shelf->level = $request->input(key:'level');
+        $shelf->state = $request->input(key:'state');
+        $shelf->shelf_id = $request->input(key:'shelf_id');
 
         $shelf->update();
         return redirect()->route(route: 'shelfs.index')->with(array(
@@ -195,7 +205,7 @@ class ShelfController extends Controller
         $user = Auth::user();
         $shelf = Shelf::find($shelf_id);
         if ($shelf && $user) {
-            $shelf->code = 'Eliminado';
+            $shelf->state = 'Eliminado';
             $shelf->update();
             return redirect()->route('shelfs.index')->with(array(
                 "message" => "El estante se ha eliminado correctamente"

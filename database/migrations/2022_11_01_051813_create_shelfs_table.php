@@ -16,9 +16,10 @@ return new class extends Migration
         //id ubicacion pesovacio codigo
         Schema::create('shelfs', function (Blueprint $table) {
             $table->id();
-            $table->string('ubication',3);
-            $table->integer('emptyweight');
-            $table->string('code',3);
+            $table->string('shelf',3);
+            $table->integer('level');
+            $table->string('state',9);
+            $table->string('shelf_id',3);
             $table->timestamps();
             $table->softDeletes();
         });

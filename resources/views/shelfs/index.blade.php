@@ -26,8 +26,9 @@
                 <tr>
                     <th>Acciones</th>
                     <th>Id</th>
-                    <th>Ubicación</th>
-                    <th>Codigo</th>
+                    <th>Estante</th>
+                    <th>Nivel</th>
+                    <th>Estado</th>
                 </tr>
                 </thead>
                 <tbody>

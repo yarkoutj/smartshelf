@@ -19,11 +19,18 @@
                   </div>
               @endif
               <div class="form-group">
-                  <label for="name">Ubicación</label>
-                  <input type="text" class="form-control" id="ubication" name="ubication" value="{{old('ubication')}}"/>
+                  <label for="name">Estante (Alfabético)</label>
+                  <input type="text" class="form-control" id="shelf" name="shelf" value="{{old('shelf')}}"/>
               </div>
               <div class="form-group">
-                  <input type="hidden" id="code" name="code" value="0"/>
+                  <label for="name">Nivel (Numérico)</label>
+                  <input type="number" class="form-control" id="level" name="level" value="{{old('level')}}"/>
+              </div>
+              <div class="form-group">
+                  <input type="hidden" id="state" name="state" value="Activo"/>
+              </div>
+              <div class="form-group">
+                  <input type="hidden" id="shelf_id" name="shelf_id" value="{{old('shelf')}}{{old('level')}}"/>
               </div>
            <button type="submit" class="btn btn-success">Crear estante</button>
           </form>

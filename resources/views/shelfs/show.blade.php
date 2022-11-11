@@ -20,14 +20,17 @@
                     </div>
                 @endif
                 <div class="form-group">
-                    <label for="weight">Ubicación</label>
-                    <input type="text" class="form-control" id="ubication" name="ubication" value="{{$shelf->ubication}}" disabled/>
-                    <label for="code">Código</label>
-                    <select class="form-control" id="code" name="code" value="{{$shelf->code}}" disabled>
-                        <option value="">{{$shelf->code}}</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
+                    <label for="shelf">Estante (Alfabético)</label>
+                    <input type="text" class="form-control" id="shelf" name="shelf" value="{{$shelf->shelf}}" disabled/>
+                    <label for="shelf">Nivel (Numérico)</label>
+                    <input type="number" class="form-control" id="level" name="level" value="{{$shelf->level}}" disabled/>
+                    <label for="state">Estado</label>
+                    <select class="form-control" id="state" name="state" value="{{$shelf->state}}" disabled>
+                        <option value="">{{$shelf->state}}</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
                     </select>
+                    <input type="hidden" class="form-control" id="shelf_id" name="shelf_id" value="{{$shelf->shelf_id}}" disabled/>
                 </div>
                 <a href="{{ route('shelfs.index') }}" class="btn btn-primary">< Regresar</a>
             </form>

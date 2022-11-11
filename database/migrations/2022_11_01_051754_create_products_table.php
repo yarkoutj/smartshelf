@@ -17,10 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('shelf_id');
             $table->string('name');
-            $table->float('weight');
-            $table->string('state',1);
-            $table->integer('stockmin');
-            $table->integer('stockmax');
+            $table->string('state',8);
             $table->integer('quantity');
             $table->timestamps();
             $table->softDeletes();
